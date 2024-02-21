@@ -1,0 +1,25 @@
+Store Rasa Conversations in MySQL Database
+
+Python 3.8.18
+Rasa 3.6.17
+pymysql 1.1.0
+
+1. Create a MySQL connection. Create a database in it.
+
+2. Set up SQL as Tracker store in the endpoints.yml file
+
+3. Train your bot
+
+In Your MySQL Database
+
+- Check all conversations using
+
+SELECT * from rasa.events WHERE type_name=’user’ ;
+
+- Check unanswered queries using
+
+SELECT data from rasa.events WHERE intent_name=’nlu_fallback’;
+
+- Fetch JSON response from the column using
+
+SELECT json_extract(data, ‘$.text’) AS Fallback FROM rasa.events WHERE intent_name=’nlu_fallback’;
